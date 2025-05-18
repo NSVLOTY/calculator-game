@@ -1,0 +1,1291 @@
+html
+    body {
+        font-family: 'Tajawal', sans-serif;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: #0f172a;
+    }
+    
+    .background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+    
+    .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .star {
+        position: absolute;
+        background-color: white;
+        border-radius: 50%;
+        animation: twinkle var(--duration) infinite ease-in-out;
+        opacity: 0;
+    }
+    
+    @keyframes twinkle {
+        0% { opacity: 0; }
+        50% { opacity: var(--opacity); }
+        100% { opacity: 0; }
+    }
+    
+    .gradient-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    }
+    
+    .calculator {
+        background-color: rgba(15, 23, 42, 0.85);
+        border-radius: 1.5rem;
+        box-shadow: 0 0 50px rgba(99, 102, 241, 0.5);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        max-width: 95%;
+        width: 360px;
+    }
+    
+    .calculator:hover {
+        box-shadow: 0 0 70px rgba(99, 102, 241, 0.7);
+    }
+    
+    .calculator-button {
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .calculator-button:active {
+        transform: scale(0.95);
+    }
+    
+    .calculator-button::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 5px;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 0;
+        border-radius: 100%;
+        transform: scale(1, 1) translate(-50%);
+        transform-origin: 50% 50%;
+    }
+    
+    .calculator-button:focus::after {
+        animation: ripple 1s ease-out;
+    }
+    
+    @keyframes ripple {
+        0% {
+            transform: scale(0, 0);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(20, 20);
+            opacity: 0;
+        }
+    }
+    
+    .score-animation {
+        animation: scorePopup 0.5s ease-out;
+    }
+    
+    @keyframes scorePopup {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.3); }
+        100% { transform: scale(1); }
+    }
+    
+    .timer-bar {
+        transition: width 0.1s linear;
+        box-shadow: 0 0 10px rgba(99, 102, 241, 0.7);
+    }
+    
+    .correct-answer {
+        animation: correctFlash 0.8s;
+    }
+    
+    @keyframes correctFlash {
+        0% { background-color: rgba(15, 23, 42, 0.85); }
+        30% { background-color: rgba(16, 185, 129, 0.7); }
+        100% { background-color: rgba(15, 23, 42, 0.85); }
+    }
+    
+    .wrong-answer {
+        animation: wrongFlash 0.8s;
+    }
+    
+    @keyframes wrongFlash {
+        0% { background-color: rgba(15, 23, 42, 0.85); }
+        30% { background-color: rgba(239, 68, 68, 0.7); }
+        100% { background-color: rgba(15, 23, 42, 0.85); }
+    }
+    
+    .leaderboard-item {
+        animation: fadeIn 0.5s;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .difficulty-btn.active {
+        border: 2px solid #ffffff;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    
+    .badge {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        margin: 0 5px;
+        opacity: 0.4;
+        transition: all 0.3s ease;
+    }
+    
+    .badge.earned {
+        opacity: 1;
+        animation: badgeEarned 1s;
+    }
+    
+    @keyframes badgeEarned {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.5); }
+        100% { transform: scale(1); }
+    }
+    
+    .challenge {
+        animation: challengeAppear 0.5s;
+    }
+    
+    @keyframes challengeAppear {
+        0% { transform: translateY(-20px); opacity: 0; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    .golden-time {
+        animation: goldenPulse 2s infinite;
+    }
+    
+    @keyframes goldenPulse {
+        0% { box-shadow: 0 0 5px rgba(250, 204, 21, 0.7); }
+        50% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.9); }
+        100% { box-shadow: 0 0 5px rgba(250, 204, 21, 0.7); }
+    }
+    
+    .modal {
+        animation: modalAppear 0.3s;
+    }
+    
+    @keyframes modalAppear {
+        0% { transform: scale(0.9); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .confetti {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #f00;
+        opacity: 0;
+    }
+    
+    .streak-counter {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-weight: bold;
+        opacity: 0;
+        transition: all 0.3s;
+    }
+    
+    .streak-counter.show {
+        animation: streakShow 1s;
+    }
+    
+    @keyframes streakShow {
+        0% { opacity: 0; top: 0; }
+        20% { opacity: 1; top: -30px; }
+        80% { opacity: 1; top: -30px; }
+        100% { opacity: 0; top: -50px; }
+    }
+    
+    .bonus-points {
+        position: absolute;
+        color: #fcd34d;
+        font-weight: bold;
+        opacity: 0;
+        font-size: 1.2rem;
+        z-index: 10;
+    }
+    
+    .bonus-points.show {
+        animation: bonusShow 1.5s;
+    }
+    
+    @keyframes bonusShow {
+        0% { opacity: 0; transform: translate(-50%, 0); }
+        20% { opacity: 1; transform: translate(-50%, -20px); }
+        80% { opacity: 1; transform: translate(-50%, -20px); }
+        100% { opacity: 0; transform: translate(-50%, -40px); }
+    }
+    
+    .progress-ring {
+        transition: stroke-dashoffset 0.3s;
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+    }
+</style>
+<div class="calculator">
+    <!-- Game Header -->
+    <div class="bg-gradient-to-r from-indigo-900 to-purple-900 p-4">
+        <div class="flex justify-between items-center">
+            <div>
+                <h2 class="text-white text-lg font-bold">لعبة الحاسبة</h2>
+                <p class="text-indigo-200 text-sm">المستوى: <span id="difficulty-display">متوسط</span></p>
+            </div>
+            <div class="text-center relative">
+                <div class="text-white font-bold text-2xl" id="score">0</div>
+                <div class="text-indigo-200 text-xs">النقاط</div>
+                <div id="streak-counter" class="streak-counter"></div>
+            </div>
+        </div>
+        
+        <!-- Badges -->
+        <div class="flex justify-center mt-2 overflow-x-auto py-1 px-2">
+            <div class="badge bg-green-600" title="5 إجابات متتالية" id="badge-streak">🔥</div>
+            <div class="badge bg-blue-600" title="مستوى 5" id="badge-level">🏆</div>
+            <div class="badge bg-purple-600" title="50 إجابة صحيحة" id="badge-correct">✓</div>
+            <div class="badge bg-yellow-500" title="100 نقطة" id="badge-score">⭐</div>
+            <div class="badge bg-red-600" title="إكمال تحدي" id="badge-challenge">🎯</div>
+        </div>
+    </div>
+    
+    <!-- Timer Bar -->
+    <div class="bg-indigo-900 h-2 w-full">
+        <div id="timer-bar" class="timer-bar bg-gradient-to-r from-indigo-400 to-purple-400 h-full w-full"></div>
+    </div>
+    
+    <!-- Challenge Banner (hidden by default) -->
+    <div id="challenge-banner" class="hidden bg-yellow-600 p-2 text-center text-white text-sm font-bold challenge">
+        تحدي خاص: أجب على 3 أسئلة متتالية في أقل من 5 ثوان!
+    </div>
+    
+    <!-- Golden Time Banner (hidden by default) -->
+    <div id="golden-time-banner" class="hidden bg-gradient-to-r from-yellow-500 to-amber-500 p-2 text-center text-white text-sm font-bold golden-time">
+        الوقت الذهبي! نقاط مضاعفة × 2
+    </div>
+    
+    <!-- Display -->
+    <div class="p-4 bg-slate-800 relative">
+        <div id="problem" class="text-white text-2xl font-bold text-center mb-1 h-8">5 + 3 = ?</div>
+        <div id="display" class="bg-slate-700 text-white text-3xl font-bold p-4 rounded-lg text-left h-14 flex items-center justify-end overflow-hidden shadow-inner">0</div>
+        <div id="bonus-points" class="bonus-points"></div>
+    </div>
+    
+    <!-- Game Status -->
+    <div id="game-status" class="bg-slate-800 px-4 pb-3">
+        <div class="flex justify-between text-sm">
+            <div class="text-indigo-300 flex items-center">
+                <svg class="w-4 h-4 mr-1 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span id="correct-count">0</span>
+            </div>
+            <div class="text-red-300 flex items-center">
+                <svg class="w-4 h-4 mr-1 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+                <span id="wrong-count">0</span>
+            </div>
+            <div class="text-yellow-300 flex items-center">
+                <svg class="w-4 h-4 mr-1 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span id="level">1</span>
+            </div>
+            <div class="text-blue-300 flex items-center">
+                <svg class="w-4 h-4 mr-1 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span id="current-streak">0</span>
+            </div>
+        </div>
+        
+        <!-- Progress to next level -->
+        <div class="mt-2 flex items-center">
+            <div class="text-xs text-indigo-300 mr-2">المستوى التالي:</div>
+            <div class="flex-1 bg-slate-700 rounded-full h-2">
+                <div id="level-progress" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Buttons -->
+    <div class="grid grid-cols-4 gap-1 p-2 bg-slate-900">
+        <!-- Row 1 -->
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="clearDisplay()">C</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('(')">(</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay(')')">)</button>
+        <button class="calculator-button bg-indigo-700 hover:bg-indigo-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('/')">÷</button>
+        
+        <!-- Row 2 -->
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('7')">7</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('8')">8</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('9')">9</button>
+        <button class="calculator-button bg-indigo-700 hover:bg-indigo-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('*')">×</button>
+        
+        <!-- Row 3 -->
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('4')">4</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('5')">5</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('6')">6</button>
+        <button class="calculator-button bg-indigo-700 hover:bg-indigo-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('-')">-</button>
+        
+        <!-- Row 4 -->
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('1')">1</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('2')">2</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('3')">3</button>
+        <button class="calculator-button bg-indigo-700 hover:bg-indigo-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('+')">+</button>
+        
+        <!-- Row 5 -->
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('0')">0</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="appendToDisplay('.')">.</button>
+        <button class="calculator-button bg-slate-700 hover:bg-slate-600 text-white text-2xl font-bold p-4 rounded-lg" onclick="backspace()">⌫</button>
+        <button class="calculator-button bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white text-2xl font-bold p-4 rounded-lg" onclick="checkAnswer()">=</button>
+    </div>
+    
+    <!-- Game Controls -->
+    <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-4 flex justify-between">
+        <button id="start-button" class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105" onclick="startGame()">ابدأ اللعبة</button>
+        <div class="flex space-x-2">
+            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 ml-2" onclick="showLeaderboard()">المتصدرون</button>
+            <button class="bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-600 hover:to-slate-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105" onclick="showInstructions()">التعليمات</button>
+        </div>
+    </div>
+</div>
+
+<!-- Instructions Modal -->
+<div id="instructions-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
+    <div class="bg-slate-800 p-6 rounded-xl max-w-md w-full mx-4 modal">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-white text-xl font-bold">كيفية اللعب</h2>
+            <button class="text-slate-400 hover:text-white" onclick="closeInstructions()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <ul class="text-slate-300 list-disc list-inside space-y-2 mb-6">
+            <li>ستظهر لك مسائل رياضية لحلها</li>
+            <li>أدخل الإجابة الصحيحة باستخدام الحاسبة</li>
+            <li>اضغط على = للتحقق من إجابتك</li>
+            <li>لديك وقت محدود لكل مسألة</li>
+            <li>كلما تقدمت في المستويات، زادت صعوبة المسائل</li>
+            <li>احصل على نقاط أكثر للإجابات الصحيحة السريعة</li>
+            <li>انتبه للتحديات الخاصة والوقت الذهبي للحصول على نقاط إضافية!</li>
+            <li>اجمع الشارات لإثبات مهاراتك</li>
+        </ul>
+        
+        <h3 class="text-white text-lg font-bold mb-2">اختر مستوى الصعوبة:</h3>
+        <div class="flex justify-between mb-6">
+            <button class="difficulty-btn bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg" onclick="setDifficulty('easy')">سهل</button>
+            <button class="difficulty-btn bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg active" onclick="setDifficulty('medium')">متوسط</button>
+            <button class="difficulty-btn bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-bold py-2 px-4 rounded-lg shadow-lg" onclick="setDifficulty('hard')">صعب</button>
+        </div>
+        
+        <h3 class="text-white text-lg font-bold mb-2">الشارات:</h3>
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="flex items-center">
+                <div class="badge bg-green-600 mr-2">🔥</div>
+                <span class="text-slate-300">5 إجابات متتالية</span>
+            </div>
+            <div class="flex items-center">
+                <div class="badge bg-blue-600 mr-2">🏆</div>
+                <span class="text-slate-300">الوصول للمستوى 5</span>
+            </div>
+            <div class="flex items-center">
+                <div class="badge bg-purple-600 mr-2">✓</div>
+                <span class="text-slate-300">50 إجابة صحيحة</span>
+            </div>
+            <div class="flex items-center">
+                <div class="badge bg-yellow-500 mr-2">⭐</div>
+                <span class="text-slate-300">100 نقطة</span>
+            </div>
+            <div class="flex items-center">
+                <div class="badge bg-red-600 mr-2">🎯</div>
+                <span class="text-slate-300">إكمال تحدي</span>
+            </div>
+        </div>
+        
+        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2 px-4 rounded-lg w-full shadow-lg" onclick="closeInstructions()">فهمت</button>
+    </div>
+</div>
+
+<!-- Game Over Modal -->
+<div id="game-over-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
+    <div class="bg-slate-800 p-6 rounded-xl max-w-md w-full mx-4 text-center modal">
+        <h2 class="text-white text-2xl font-bold mb-2">انتهت اللعبة!</h2>
+        <p class="text-slate-300 mb-4">لقد حصلت على <span id="final-score" class="text-yellow-400 font-bold text-2xl">0</span> نقطة</p>
+        
+        <!-- Earned badges -->
+        <div class="flex justify-center mb-4" id="earned-badges-container">
+            <!-- Badges will be added here -->
+        </div>
+        
+        <div class="bg-slate-700 p-4 rounded-lg mb-6">
+            <div class="flex justify-between mb-2">
+                <span class="text-slate-300">الإجابات الصحيحة:</span>
+                <span id="final-correct" class="text-green-400 font-bold">0</span>
+            </div>
+            <div class="flex justify-between mb-2">
+                <span class="text-slate-300">الإجابات الخاطئة:</span>
+                <span id="final-wrong" class="text-red-400 font-bold">0</span>
+            </div>
+            <div class="flex justify-between mb-2">
+                <span class="text-slate-300">المستوى النهائي:</span>
+                <span id="final-level" class="text-indigo-400 font-bold">1</span>
+            </div>
+            <div class="flex justify-between">
+                <span class="text-slate-300">أطول سلسلة إجابات صحيحة:</span>
+                <span id="final-streak" class="text-blue-400 font-bold">0</span>
+            </div>
+        </div>
+        
+        <div class="mb-4">
+            <label for="player-name" class="block text-white text-right mb-2">أدخل اسمك للتسجيل في قائمة المتصدرين:</label>
+            <input type="text" id="player-name" class="w-full p-2 rounded-lg bg-slate-600 text-white border border-slate-500 focus:outline-none focus:border-indigo-500" placeholder="اسم اللاعب" maxlength="15">
+        </div>
+        
+        <div class="flex space-x-2">
+            <button class="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold py-2 px-4 rounded-lg flex-1 shadow-lg ml-2" onclick="saveScore()">حفظ النتيجة</button>
+            <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2 px-4 rounded-lg flex-1 shadow-lg" onclick="restartGame()">العب مرة أخرى</button>
+        </div>
+    </div>
+</div>
+
+<!-- Leaderboard Modal -->
+<div id="leaderboard-modal" class="fixed inset-0 bg-black bg-opacity-70 hidden flex items-center justify-center z-50">
+    <div class="bg-slate-800 p-6 rounded-xl max-w-md w-full mx-4 modal">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-white text-xl font-bold">قائمة المتصدرين</h2>
+            <button class="text-slate-400 hover:text-white" onclick="closeLeaderboard()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="mb-4">
+            <div class="flex justify-between mb-2">
+                <button id="easy-tab" class="difficulty-tab bg-gradient-to-r from-green-700 to-green-600 hover:from-green-600 hover:to-green-500 text-white font-bold py-1 px-3 rounded-lg shadow-lg" onclick="showLeaderboardTab('easy')">سهل</button>
+                <button id="medium-tab" class="difficulty-tab bg-gradient-to-r from-yellow-600 to-amber-600 hover:from-yellow-500 hover:to-amber-500 text-white font-bold py-1 px-3 rounded-lg shadow-lg active" onclick="showLeaderboardTab('medium')">متوسط</button>
+                <button id="hard-tab" class="difficulty-tab bg-gradient-to-r from-red-700 to-red-600 hover:from-red-600 hover:to-red-500 text-white font-bold py-1 px-3 rounded-lg shadow-lg" onclick="showLeaderboardTab('hard')">صعب</button>
+            </div>
+        </div>
+        
+        <div class="bg-slate-700 rounded-lg p-2 mb-6 max-h-64 overflow-y-auto">
+            <div class="flex justify-between p-2 border-b border-slate-600 text-indigo-300 font-bold">
+                <span>الترتيب</span>
+                <span>اللاعب</span>
+                <span>النقاط</span>
+            </div>
+            <div id="leaderboard-list" class="text-white">
+                <!-- Leaderboard items will be inserted here -->
+            </div>
+        </div>
+        
+        <button class="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-2 px-4 rounded-lg w-full shadow-lg" onclick="closeLeaderboard()">إغلاق</button>
+    </div>
+</div>
+
+<!-- Achievement Notification -->
+<div id="achievement-notification" class="fixed top-4 right-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 rounded-lg shadow-lg hidden z-50 modal">
+    <div class="flex items-center">
+        <div id="achievement-icon" class="mr-3 text-2xl">🏆</div>
+        <div>
+            <div class="font-bold" id="achievement-title">إنجاز جديد!</div>
+            <div class="text-sm" id="achievement-description">لقد حصلت على شارة جديدة</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Game variables
+    let gameActive = false;
+    let currentProblem = {};
+    let score = 0;
+    let correctCount = 0;
+    let wrongCount = 0;
+    let level = 1;
+    let timeLeft = 100;
+    let timerInterval;
+    let maxTime = 10; // seconds
+    let difficulty = 'medium'; // default difficulty
+    let currentStreak = 0;
+    let bestStreak = 0;
+    let lastAnswerTime = 0;
+    let challengeActive = false;
+    let challengeProgress = 0;
+    let challengeGoal = 0;
+    let challengeType = '';
+    let goldenTimeActive = false;
+    let goldenTimeTimeout;
+    let badges = {
+        streak: false,
+        level: false,
+        correct: false,
+        score: false,
+        challenge: false
+    };
+    
+    // DOM elements
+    const displayElement = document.getElementById('display');
+    const problemElement = document.getElementById('problem');
+    const scoreElement = document.getElementById('score');
+    const timerBarElement = document.getElementById('timer-bar');
+    const correctCountElement = document.getElementById('correct-count');
+    const wrongCountElement = document.getElementById('wrong-count');
+    const levelElement = document.getElementById('level');
+    const currentStreakElement = document.getElementById('current-streak');
+    const startButton = document.getElementById('start-button');
+    const instructionsModal = document.getElementById('instructions-modal');
+    const gameOverModal = document.getElementById('game-over-modal');
+    const leaderboardModal = document.getElementById('leaderboard-modal');
+    const difficultyDisplay = document.getElementById('difficulty-display');
+    const levelProgressElement = document.getElementById('level-progress');
+    const challengeBanner = document.getElementById('challenge-banner');
+    const goldenTimeBanner = document.getElementById('golden-time-banner');
+    const streakCounter = document.getElementById('streak-counter');
+    const bonusPoints = document.getElementById('bonus-points');
+    
+    // Create stars for background
+    function createStars() {
+        const stars = document.getElementById('stars');
+        const count = 200;
+        
+        for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Random position
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            
+            // Random size
+            const size = Math.random() * 3;
+            
+            // Random duration and delay
+            const duration = 2 + Math.random() * 8;
+            const delay = Math.random() * 10;
+            
+            // Random opacity
+            const opacity = 0.5 + Math.random() * 0.5;
+            
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            star.style.setProperty('--opacity', opacity);
+            star.style.animationDelay = `${delay}s`;
+            
+            stars.appendChild(star);
+        }
+    }
+    
+    // Initialize display
+    function initDisplay() {
+        displayElement.textContent = '0';
+    }
+    
+    // Append to display
+    function appendToDisplay(value) {
+        if (!gameActive) return;
+        
+        if (displayElement.textContent === '0' && value !== '.') {
+            displayElement.textContent = value;
+        } else {
+            displayElement.textContent += value;
+        }
+    }
+    
+    // Clear display
+    function clearDisplay() {
+        displayElement.textContent = '0';
+    }
+    
+    // Backspace
+    function backspace() {
+        if (displayElement.textContent.length === 1) {
+            displayElement.textContent = '0';
+        } else {
+            displayElement.textContent = displayElement.textContent.slice(0, -1);
+        }
+    }
+    
+    // Generate a math problem based on level and difficulty
+    function generateProblem() {
+        let num1, num2, operator, answer, problem;
+        
+        // Adjust difficulty based on level and selected difficulty
+        let maxNum, operators;
+        
+        if (difficulty === 'easy') {
+            maxNum = Math.min(10 + (level * 2), 50);
+            operators = level <= 2 ? ['+'] : ['+', '-'];
+        } else if (difficulty === 'medium') {
+            maxNum = Math.min(10 + (level * 5), 100);
+            operators = level === 1 ? ['+', '-'] : 
+                       level <= 3 ? ['+', '-', '*'] : 
+                       ['+', '-', '*', '/'];
+        } else { // hard
+            maxNum = Math.min(20 + (level * 10), 200);
+            operators = level === 1 ? ['+', '-', '*'] : ['+', '-', '*', '/'];
+        }
+        
+        operator = operators[Math.floor(Math.random() * operators.length)];
+        
+        if (operator === '+') {
+            num1 = Math.floor(Math.random() * maxNum) + 1;
+            num2 = Math.floor(Math.random() * maxNum) + 1;
+            answer = num1 + num2;
+            problem = `${num1} + ${num2} = ?`;
+        } else if (operator === '-') {
+            num1 = Math.floor(Math.random() * maxNum) + 1;
+            num2 = Math.floor(Math.random() * num1) + 1; // Ensure positive result
+            answer = num1 - num2;
+            problem = `${num1} - ${num2} = ?`;
+        } else if (operator === '*') {
+            const maxFactor = difficulty === 'hard' ? 20 : 12;
+            num1 = Math.floor(Math.random() * Math.min(maxFactor, maxNum/2)) + 1;
+            num2 = Math.floor(Math.random() * Math.min(maxFactor, maxNum/2)) + 1;
+            answer = num1 * num2;
+            problem = `${num1} × ${num2} = ?`;
+        } else if (operator === '/') {
+            const maxDivisor = difficulty === 'hard' ? 20 : 10;
+            num2 = Math.floor(Math.random() * maxDivisor) + 1;
+            answer = Math.floor(Math.random() * maxDivisor) + 1;
+            num1 = num2 * answer; // Ensure clean division
+            problem = `${num1} ÷ ${num2} = ?`;
+        }
+        
+        return { problem, answer };
+    }
+    
+    // Set new problem
+    function setNewProblem() {
+        currentProblem = generateProblem();
+        problemElement.textContent = currentProblem.problem;
+        clearDisplay();
+        resetTimer();
+        lastAnswerTime = Date.now();
+    }
+    
+    // Check answer
+    function checkAnswer() {
+        if (!gameActive) return;
+        
+        const userAnswer = parseFloat(displayElement.textContent);
+        const answerTime = (Date.now() - lastAnswerTime) / 1000; // Time in seconds
+        
+        if (userAnswer === currentProblem.answer) {
+            // Correct answer
+            displayElement.parentElement.classList.add('correct-answer');
+            setTimeout(() => {
+                displayElement.parentElement.classList.remove('correct-answer');
+            }, 800);
+            
+            // Update streak
+            currentStreak++;
+            currentStreakElement.textContent = currentStreak;
+            
+            if (currentStreak > bestStreak) {
+                bestStreak = currentStreak;
+            }
+            
+            // Show streak counter for streaks >= 3
+            if (currentStreak >= 3) {
+                streakCounter.textContent = `${currentStreak}x 🔥`;
+                streakCounter.classList.add('show');
+                setTimeout(() => {
+                    streakCounter.classList.remove('show');
+                }, 1000);
+            }
+            
+            // Check for streak badge
+            if (currentStreak >= 5 && !badges.streak) {
+                badges.streak = true;
+                document.getElementById('badge-streak').classList.add('earned');
+                showAchievement('🔥 سلسلة ناجحة!', 'أجبت على 5 أسئلة متتالية بشكل صحيح');
+            }
+            
+            // Calculate points based on time left, difficulty, and streak
+            const timeBonus = Math.ceil(timeLeft / 10);
+            let difficultyMultiplier = 1;
+            if (difficulty === 'medium') difficultyMultiplier = 1.5;
+            if (difficulty === 'hard') difficultyMultiplier = 2;
+            
+            let streakMultiplier = 1;
+            if (currentStreak >= 10) streakMultiplier = 2;
+            else if (currentStreak >= 5) streakMultiplier = 1.5;
+            
+            // Golden time bonus
+            let goldenTimeMultiplier = goldenTimeActive ? 2 : 1;
+            
+            // Fast answer bonus (under 3 seconds)
+            let speedBonus = 0;
+            if (answerTime < 3) {
+                speedBonus = Math.floor((3 - answerTime) * 5);
+            }
+            
+            const basePoints = 10 + timeBonus + (level * 5) + speedBonus;
+            const pointsEarned = Math.floor(basePoints * difficultyMultiplier * streakMultiplier * goldenTimeMultiplier);
+            
+            // Show bonus points animation
+            if (pointsEarned > basePoints) {
+                bonusPoints.textContent = `+${pointsEarned}`;
+                bonusPoints.style.left = '50%';
+                bonusPoints.style.top = '50%';
+                bonusPoints.classList.add('show');
+                setTimeout(() => {
+                    bonusPoints.classList.remove('show');
+                }, 1500);
+            }
+            
+            // Update score
+            score += pointsEarned;
+            scoreElement.textContent = score;
+            scoreElement.classList.add('score-animation');
+            setTimeout(() => {
+                scoreElement.classList.remove('score-animation');
+            }, 500);
+            
+            // Check for score badge
+            if (score >= 100 && !badges.score) {
+                badges.score = true;
+                document.getElementById('badge-score').classList.add('earned');
+                showAchievement('⭐ 100 نقطة!', 'وصلت إلى 100 نقطة، أداء رائع!');
+            }
+            
+            correctCount++;
+            correctCountElement.textContent = correctCount;
+            
+            // Check for correct answers badge
+            if (correctCount >= 50 && !badges.correct) {
+                badges.correct = true;
+                document.getElementById('badge-correct').classList.add('earned');
+                showAchievement('✓ إجابات صحيحة!', 'أجبت على 50 سؤال بشكل صحيح');
+            }
+            
+            // Update level progress
+            const progressToNextLevel = (correctCount % 5) / 5 * 100;
+            levelProgressElement.style.width = `${progressToNextLevel}%`;
+            
+            // Level up every 5 correct answers
+            if (correctCount % 5 === 0) {
+                level++;
+                levelElement.textContent = level;
+                
+                // Check for level badge
+                if (level >= 5 && !badges.level) {
+                    badges.level = true;
+                    document.getElementById('badge-level').classList.add('earned');
+                    showAchievement('🏆 المستوى 5!', 'وصلت إلى المستوى 5، تقدم رائع!');
+                }
+                
+                // Adjust max time based on difficulty and level
+                if (difficulty === 'easy') {
+                    maxTime = Math.max(7, 12 - Math.floor(level/3));
+                } else if (difficulty === 'medium') {
+                    maxTime = Math.max(5, 10 - Math.floor(level/2));
+                } else { // hard
+                    maxTime = Math.max(3, 8 - Math.floor(level/2));
+                }
+                
+                // Level up animation
+                levelElement.classList.add('score-animation');
+                setTimeout(() => {
+                    levelElement.classList.remove('score-animation');
+                }, 500);
+            }
+            
+            // Update challenge progress if active
+            if (challengeActive) {
+                if (challengeType === 'speed' && answerTime < 5) {
+                    challengeProgress++;
+                } else if (challengeType === 'streak') {
+                    challengeProgress++;
+                }
+                
+                // Check if challenge completed
+                if (challengeProgress >= challengeGoal) {
+                    completeChallengeSuccess();
+                }
+                
+                // Update challenge banner
+                updateChallengeBanner();
+            }
+            
+            // Random chance to activate golden time (5%)
+            if (!goldenTimeActive && Math.random() < 0.05) {
+                activateGoldenTime();
+            }
+            
+            // Random chance to start a challenge (10% if no challenge active)
+            if (!challengeActive && Math.random() < 0.1) {
+                startRandomChallenge();
+            }
+            
+            // Set new problem
+            setNewProblem();
+        } else {
+            // Wrong answer
+            displayElement.parentElement.classList.add('wrong-answer');
+            setTimeout(() => {
+                displayElement.parentElement.classList.remove('wrong-answer');
+            }, 800);
+            
+            // Reset streak
+            currentStreak = 0;
+            currentStreakElement.textContent = currentStreak;
+            
+            wrongCount++;
+            wrongCountElement.textContent = wrongCount;
+            
+            // Penalty: reduce time
+            timeLeft = Math.max(10, timeLeft - 20);
+            
+            // If challenge is active, fail it
+            if (challengeActive) {
+                failChallenge();
+            }
+            
+            // Check if game over (3 wrong answers)
+            if (wrongCount >= 3) {
+                endGame();
+            }
+        }
+    }
+    
+    // Timer functions
+    function startTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            timeLeft -= 1;
+            timerBarElement.style.width = `${timeLeft}%`;
+            
+            if (timeLeft <= 0) {
+                // Time's up for this problem
+                wrongCount++;
+                wrongCountElement.textContent = wrongCount;
+                
+                // Reset streak
+                currentStreak = 0;
+                currentStreakElement.textContent = currentStreak;
+                
+                // If challenge is active, fail it
+                if (challengeActive) {
+                    failChallenge();
+                }
+                
+                // Check if game over (3 wrong answers)
+                if (wrongCount >= 3) {
+                    endGame();
+                } else {
+                    setNewProblem();
+                }
+            }
+        }, maxTime * 10); // Update every 100ms
+    }
+    
+    function resetTimer() {
+        timeLeft = 100;
+        timerBarElement.style.width = '100%';
+    }
+    
+    // Challenge functions
+    function startRandomChallenge() {
+        // Choose a random challenge type
+        const challengeTypes = ['speed', 'streak'];
+        challengeType = challengeTypes[Math.floor(Math.random() * challengeTypes.length)];
+        
+        if (challengeType === 'speed') {
+            challengeGoal = 3;
+            challengeBanner.textContent = `تحدي السرعة: أجب على ${challengeGoal} أسئلة في أقل من 5 ثوان لكل سؤال!`;
+        } else if (challengeType === 'streak') {
+            challengeGoal = 5;
+            challengeBanner.textContent = `تحدي السلسلة: أجب على ${challengeGoal} أسئلة متتالية بشكل صحيح!`;
+        }
+        
+        challengeProgress = 0;
+        challengeActive = true;
+        challengeBanner.classList.remove('hidden');
+    }
+    
+    function updateChallengeBanner() {
+        if (challengeType === 'speed') {
+            challengeBanner.textContent = `تحدي السرعة: ${challengeProgress}/${challengeGoal} (أقل من 5 ثوان لكل سؤال)`;
+        } else if (challengeType === 'streak') {
+            challengeBanner.textContent = `تحدي السلسلة: ${challengeProgress}/${challengeGoal} إجابات متتالية صحيحة`;
+        }
+    }
+    
+    function completeChallengeSuccess() {
+        // Award bonus points
+        const challengeBonus = 50;
+        score += challengeBonus;
+        scoreElement.textContent = score;
+        
+        // Show achievement
+        showAchievement('🎯 تحدي مكتمل!', `أكملت التحدي وربحت ${challengeBonus} نقطة إضافية!`);
+        
+        // Award badge if first challenge completed
+        if (!badges.challenge) {
+            badges.challenge = true;
+            document.getElementById('badge-challenge').classList.add('earned');
+        }
+        
+        // Reset challenge
+        challengeActive = false;
+        challengeBanner.classList.add('hidden');
+    }
+    
+    function failChallenge() {
+        // Reset challenge
+        challengeActive = false;
+        challengeBanner.classList.add('hidden');
+    }
+    
+    // Golden time functions
+    function activateGoldenTime() {
+        goldenTimeActive = true;
+        goldenTimeBanner.classList.remove('hidden');
+        
+        // Show achievement
+        showAchievement('⏱️ الوقت الذهبي!', 'نقاط مضاعفة لفترة محدودة!');
+        
+        // Set timeout to end golden time
+        goldenTimeTimeout = setTimeout(() => {
+            goldenTimeActive = false;
+            goldenTimeBanner.classList.add('hidden');
+        }, 15000); // 15 seconds of golden time
+    }
+    
+    // Achievement notification
+    function showAchievement(title, description) {
+        const notification = document.getElementById('achievement-notification');
+        const titleElement = document.getElementById('achievement-title');
+        const descriptionElement = document.getElementById('achievement-description');
+        const iconElement = document.getElementById('achievement-icon');
+        
+        // Set content
+        titleElement.textContent = title;
+        descriptionElement.textContent = description;
+        
+        // Set icon based on title
+        if (title.includes('🔥')) iconElement.textContent = '🔥';
+        else if (title.includes('🏆')) iconElement.textContent = '🏆';
+        else if (title.includes('✓')) iconElement.textContent = '✓';
+        else if (title.includes('⭐')) iconElement.textContent = '⭐';
+        else if (title.includes('🎯')) iconElement.textContent = '🎯';
+        else if (title.includes('⏱️')) iconElement.textContent = '⏱️';
+        
+        // Show notification
+        notification.classList.remove('hidden');
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 3000);
+    }
+    
+    // Game control functions
+    function startGame() {
+        // Reset game state
+        score = 0;
+        correctCount = 0;
+        wrongCount = 0;
+        level = 1;
+        currentStreak = 0;
+        bestStreak = 0;
+        
+        // Reset badges for new game
+        badges = {
+            streak: false,
+            level: false,
+            correct: false,
+            score: false,
+            challenge: false
+        };
+        
+        // Reset badge UI
+        document.querySelectorAll('.badge').forEach(badge => {
+            badge.classList.remove('earned');
+        });
+        
+        // Reset challenge and golden time
+        challengeActive = false;
+        challengeBanner.classList.add('hidden');
+        goldenTimeActive = false;
+        goldenTimeBanner.classList.add('hidden');
+        clearTimeout(goldenTimeTimeout);
+        
+        // Set initial max time based on difficulty
+        if (difficulty === 'easy') {
+            maxTime = 12;
+        } else if (difficulty === 'medium') {
+            maxTime = 10;
+        } else { // hard
+            maxTime = 8;
+        }
+        
+        // Update UI
+        scoreElement.textContent = score;
+        correctCountElement.textContent = correctCount;
+        wrongCountElement.textContent = wrongCount;
+        levelElement.textContent = level;
+        currentStreakElement.textContent = currentStreak;
+        startButton.textContent = 'إعادة اللعبة';
+        levelProgressElement.style.width = '0%';
+        
+        // Start game
+        gameActive = true;
+        setNewProblem();
+        startTimer();
+    }
+    
+    function endGame() {
+        gameActive = false;
+        clearInterval(timerInterval);
+        
+        // Clear any active challenges or golden time
+        challengeActive = false;
+        goldenTimeActive = false;
+        clearTimeout(goldenTimeTimeout);
+        
+        // Update final stats
+        document.getElementById('final-score').textContent = score;
+        document.getElementById('final-correct').textContent = correctCount;
+        document.getElementById('final-wrong').textContent = wrongCount;
+        document.getElementById('final-level').textContent = level;
+        document.getElementById('final-streak').textContent = bestStreak;
+        
+        // Show earned badges
+        const badgesContainer = document.getElementById('earned-badges-container');
+        badgesContainer.innerHTML = '';
+        
+        if (badges.streak) {
+            const badge = document.createElement('div');
+            badge.className = 'badge bg-green-600 earned';
+            badge.textContent = '🔥';
+            badge.title = '5 إجابات متتالية';
+            badgesContainer.appendChild(badge);
+        }
+        
+        if (badges.level) {
+            const badge = document.createElement('div');
+            badge.className = 'badge bg-blue-600 earned';
+            badge.textContent = '🏆';
+            badge.title = 'المستوى 5';
+            badgesContainer.appendChild(badge);
+        }
+        
+        if (badges.correct) {
+            const badge = document.createElement('div');
+            badge.className = 'badge bg-purple-600 earned';
+            badge.textContent = '✓';
+            badge.title = '50 إجابة صحيحة';
+            badgesContainer.appendChild(badge);
+        }
+        
+        if (badges.score) {
+            const badge = document.createElement('div');
+            badge.className = 'badge bg-yellow-500 earned';
+            badge.textContent = '⭐';
+            badge.title = '100 نقطة';
+            badgesContainer.appendChild(badge);
+        }
+        
+        if (badges.challenge) {
+            const badge = document.createElement('div');
+            badge.className = 'badge bg-red-600 earned';
+            badge.textContent = '🎯';
+            badge.title = 'إكمال تحدي';
+            badgesContainer.appendChild(badge);
+        }
+        
+        // Show game over modal
+        gameOverModal.classList.remove('hidden');
+    }
+    
+    function restartGame() {
+        gameOverModal.classList.add('hidden');
+        startGame();
+    }
+    
+    // Difficulty functions
+    function setDifficulty(newDifficulty) {
+        difficulty = newDifficulty;
+        
+        // Update UI
+        difficultyDisplay.textContent = 
+            difficulty === 'easy' ? 'سهل' : 
+            difficulty === 'medium' ? 'متوسط' : 'صعب';
+        
+        // Update active button
+        const buttons = document.querySelectorAll('.difficulty-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        const activeButton = Array.from(buttons).find(btn => {
+            return btn.onclick.toString().includes(newDifficulty);
+        });
+        
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
+    }
+    
+    // Leaderboard functions
+    function saveScore() {
+        const playerName = document.getElementById('player-name').value.trim() || 'لاعب مجهول';
+        
+        // Get existing leaderboard from localStorage
+        let leaderboard = JSON.parse(localStorage.getItem('calculatorGameLeaderboard') || '{}');
+        
+        // Initialize difficulty category if it doesn't exist
+        if (!leaderboard[difficulty]) {
+            leaderboard[difficulty] = [];
+        }
+        
+        // Add new score
+        leaderboard[difficulty].push({
+            name: playerName,
+            score: score,
+            level: level,
+            correct: correctCount,
+            streak: bestStreak,
+            badges: Object.values(badges).filter(v => v).length,
+            date: new Date().toISOString()
+        });
+        
+        // Sort by score (descending)
+        leaderboard[difficulty].sort((a, b) => b.score - a.score);
+        
+        // Keep only top 10
+        if (leaderboard[difficulty].length > 10) {
+            leaderboard[difficulty] = leaderboard[difficulty].slice(0, 10);
+        }
+        
+        // Save back to localStorage
+        localStorage.setItem('calculatorGameLeaderboard', JSON.stringify(leaderboard));
+        
+        // Close game over modal and show leaderboard
+        gameOverModal.classList.add('hidden');
+        showLeaderboard();
+    }
+    
+    function showLeaderboard() {
+        // Get leaderboard data
+        const leaderboard = JSON.parse(localStorage.getItem('calculatorGameLeaderboard') || '{}');
+        
+        // Show current difficulty tab
+        showLeaderboardTab(difficulty);
+        
+        // Show modal
+        leaderboardModal.classList.remove('hidden');
+    }
+    
+    function showLeaderboardTab(difficultyTab) {
+        // Update active tab
+        const tabs = document.querySelectorAll('.difficulty-tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        document.getElementById(`${difficultyTab}-tab`).classList.add('active');
+        
+        // Get leaderboard data
+        const leaderboard = JSON.parse(localStorage.getItem('calculatorGameLeaderboard') || '{}');
+        const scores = leaderboard[difficultyTab] || [];
+        
+        // Update leaderboard list
+        const leaderboardList = document.getElementById('leaderboard-list');
+        leaderboardList.innerHTML = '';
+        
+        if (scores.length === 0) {
+            leaderboardList.innerHTML = '<div class="p-4 text-center text-slate-400">لا توجد نتائج بعد</div>';
+        } else {
+            scores.forEach((entry, index) => {
+                const item = document.createElement('div');
+                item.className = 'flex justify-between p-2 border-b border-slate-600 leaderboard-item';
+                
+                // Add medal for top 3
+                let rankDisplay = `${index + 1}`;
+                if (index === 0) rankDisplay = '🥇 1';
+                else if (index === 1) rankDisplay = '🥈 2';
+                else if (index === 2) rankDisplay = '🥉 3';
+                
+                // Add badges if available
+                let badgesDisplay = '';
+                if (entry.badges > 0) {
+                    badgesDisplay = ` ${entry.badges}🏅`;
+                }
+                
+                item.innerHTML = `
+                    <span>${rankDisplay}</span>
+                    <span>${entry.name}${badgesDisplay}</span>
+                    <span>${entry.score}</span>
+                `;
+                leaderboardList.appendChild(item);
+            });
+        }
+    }
+    
+    function closeLeaderboard() {
+        leaderboardModal.classList.add('hidden');
+    }
+    
+    // Instructions functions
+    function showInstructions() {
+        instructionsModal.classList.remove('hidden');
+    }
+    
+    function closeInstructions() {
+        instructionsModal.classList.add('hidden');
+    }
+    
+    // Initialize
+    function initialize() {
+        initDisplay();
+        createStars();
+        
+        // Show instructions on first load
+        setTimeout(() => {
+            showInstructions();
+        }, 500);
+    }
+    
+    // Start initialization
+    initialize();
+</script>
